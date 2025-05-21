@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="Attack.cs" />
     <Compile Include="Hamas.cs" />
+    <Compile Include="Idf.cs" />
     <Compile Include="ITerrorOrganization.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
