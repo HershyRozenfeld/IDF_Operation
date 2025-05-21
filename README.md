@@ -18,3 +18,29 @@ The project includes two primary entities:
 2. **Terrorist Organizations**
 
    * Under this entity is **Hamas**, representing a specific terrorist organization.
+
+---
+
+public interface IIDF
+{
+}
+
+public class AMAN : IIDF
+{
+}
+
+public class AttackUnit : IIDF
+{
+}
+
+public class WeapononSystem
+{
+}
+
+public interface ITerrorOrganization
+{
+}
+
+public class Hamas : ITerrorOrganization 
+{
+}
