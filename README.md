@@ -29,7 +29,7 @@ public class AMAN : IIDF
 {
 }
 
-public class AttackUnit : IIDF
+public abstract class AttackTool : IIDF
 {
 }
 
