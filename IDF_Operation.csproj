@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Attack.cs" />
     <Compile Include="Hamas.cs" />
     <Compile Include="ITerrorOrganization.cs" />
     <Compile Include="Program.cs" />
