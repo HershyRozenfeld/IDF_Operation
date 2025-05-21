@@ -33,7 +33,7 @@ public abstract class AttackTool : IIDF
 {
 }
 
-public class WeapononSystem
+public class Ammunitionstock
 {
 }
 
