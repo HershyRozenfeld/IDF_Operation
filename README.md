@@ -29,6 +29,10 @@ public class AMAN : IIDF
 {
 }
 
+public abstract class Attack
+{
+}
+
 public abstract class AttackTool : IIDF
 {
 }
