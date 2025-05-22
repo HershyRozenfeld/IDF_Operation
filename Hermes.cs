@@ -2,17 +2,12 @@
 
 public class Hermes460 : AttakTools
 {
-  
-
-    public override  void setFields()
-    {
-        this.booms = "person , vehicles";
-        this.efective = "pepole , vechiles";
-        this.strikes = 3;
-    }
+     
+    public Hermes460():base("person , vehicles", "pepole , vechiles",3) { } 
+    
     public override void setStrike(int newStrike)
     {
-        strikes -= newStrike;
+        _strikes -= newStrike;
     }
 
 }

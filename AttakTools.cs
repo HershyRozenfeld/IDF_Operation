@@ -1,11 +1,15 @@
 ﻿public abstract class AttakTools
 {
-    protected string booms;
-    protected string efective;
-    protected int strikes;
+    private  string _booms;
+    private string   _efective;
+    protected  int _strikes;
 
-   
-    public abstract void setFields();
+    public AttakTools(string booms,string efective,int strikes)
+    {
+        this._booms = booms;
+        this._efective = efective;
+        this._strikes = strikes;
+    }
 
     public abstract void setStrike(int newStrike);
 }
