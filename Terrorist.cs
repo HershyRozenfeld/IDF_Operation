@@ -1,4 +1,4 @@
-﻿public class Terrorist : Hamas
+﻿public class Terrorist 
 {
 
 }

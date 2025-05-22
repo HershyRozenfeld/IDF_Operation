@@ -1,4 +1,4 @@
-﻿public interface ITerrorOrganization
+﻿public class TerrorOrganization
 {
 
 }
