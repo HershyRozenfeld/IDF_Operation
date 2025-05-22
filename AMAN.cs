@@ -1,4 +1,4 @@
-﻿public class AMAN
+﻿public static class AMAN
 {
 
 }
