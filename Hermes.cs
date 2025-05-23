@@ -10,9 +10,9 @@ public class Hermes460 : AttakTools
         this.efective = "pepole , vechiles";
         this.strikes = 3;
     }
-    public override void setStrike(int newStrike)
+    public override void setStrike()
     {
-        strikes -= newStrike;
+        strikes --;
     }
 
 }
