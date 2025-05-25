@@ -32,7 +32,7 @@
             {
                 if (dictionary.ContainsKey(w.ToLower()))
                 {
-                    weaponRank += dictionary[weapon.ToLower()];
+                    weaponRank += dictionary[w.ToLower()];
                 }
             }
             sum = i.terrorist.getRank() * weaponRank;

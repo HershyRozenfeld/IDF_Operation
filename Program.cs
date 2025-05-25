@@ -3,24 +3,31 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Transactions;
 
 namespace IDF_Operation
 {
     internal class Program
     {
-        static void consoleMenager(int choice, List<Intel> intelReports, List<Weapon> weapons)
+
+        static void consoleMenager(List<Intel> intelReports, List<Weapon> weapons)
         {
             AMAN aMAN = new AMAN(intelReports);
+            string choice = Console.ReadLine();
             switch (choice)
             {
-                case 1:
+                case "1":
                     Console.WriteLine();
                     break;
-                case 2:
+                case "2":
                     Console.WriteLine();
                     break;
-                case 3:
-                    attack(aMAN.target(), weapons);
+                case "3":
+                    Intel i = aMAN.target();
+                    attack(i, weapons);
+                    break;
+                default:
+                    Console.WriteLine();
                     break;
             }
         }
@@ -28,7 +35,7 @@ namespace IDF_Operation
         {
             foreach (Weapon item in weapons)
             {
-                if (item.effective == intel.location)
+                if (item.effective.Contains(intel.location))
                 {
                     if (item.strikes > 0)
                     {
@@ -47,25 +54,27 @@ namespace IDF_Operation
         }
         static void Main(string[] args)
         {
+
             List<Intel> intelReports = new List<Intel>
 
-            {
-                new Intel(new Terrorist("Ali", "knife", 1), "XJwG02", DateTime.Now),
-                new Intel(new Terrorist("Omar", "pistol", 2), "vrabJ3", DateTime.Now),
-                new Intel(new Terrorist("Yusuf", "rifle", 3), "RC62Cl", DateTime.Now),
-                new Intel(new Terrorist("Khalid", "sniper", 4), "8lPANF", DateTime.Now),
-                new Intel(new Terrorist("Abu", "grenade", 5), "KA21Rr", DateTime.Now),
-                new Intel(new Terrorist("Salim", "baton", 2), "R1aLHC", DateTime.Now),
-                new Intel(new Terrorist("Zayd", "sword", 1), "KZLKer", DateTime.Now),
-                new Intel(new Terrorist("Tariq", "crossbow", 3), "r9oHAF", DateTime.Now),
-                new Intel(new Terrorist("Fahad", "molotov", 4), "ANAb33", DateTime.Now),
-                new Intel(new Terrorist("Nabil", "rocket launcher", 5), "z80NqG", DateTime.Now),
-                new Intel(new Terrorist("Jamal", "knife", 1), "aBckSJ", DateTime.Now),
-                new Intel(new Terrorist("Bilal", "pistol", 2), "sNEgyv", DateTime.Now),
-                new Intel(new Terrorist("Imran", "rifle", 3), "cqsgHd", DateTime.Now),
-                new Intel(new Terrorist("Rami", "sniper", 4), "j9FoVT", DateTime.Now),
-                new Intel(new Terrorist("Saif", "grenade", 5), "vXZfUf", DateTime.Now)
-            };
+
+                {
+                new Intel(new Terrorist("Ali", "knife", 1), "building", DateTime.Now),
+                new Intel(new Terrorist("Omar", "pistol", 2), "vehicles", DateTime.Now),
+                new Intel(new Terrorist("Yusuf", "rifle", 3), "open areas", DateTime.Now),
+                new Intel(new Terrorist("Khalid", "sniper", 4), "building", DateTime.Now),
+                new Intel(new Terrorist("Abu", "grenade", 5), "vehicles", DateTime.Now),
+                new Intel(new Terrorist("Salim", "baton", 2), "open areas", DateTime.Now),
+                new Intel(new Terrorist("Zayd", "sword", 1), "building", DateTime.Now),
+                new Intel(new Terrorist("Tariq", "crossbow", 3), "vehicles", DateTime.Now),
+                new Intel(new Terrorist("Fahad", "molotov", 4), "open areas", DateTime.Now),
+                new Intel(new Terrorist("Nabil", "rocket launcher", 5), "building", DateTime.Now),
+                new Intel(new Terrorist("Jamal", "knife", 1), "vehicles", DateTime.Now),
+                new Intel(new Terrorist("Bilal", "pistol", 2), "open areas", DateTime.Now),
+                new Intel(new Terrorist("Imran", "rifle", 3), "building", DateTime.Now),
+                new Intel(new Terrorist("Rami", "sniper", 4), "vehicles", DateTime.Now),
+                new Intel(new Terrorist("Saif", "grenade", 5), "open areas", DateTime.Now)
+                };
 
             List<Weapon> weapons = new List<Weapon>
             {
@@ -73,6 +82,9 @@ namespace IDF_Operation
                 new Hermes460(),
                 new M109()
             };
+
+            consoleMenager(intelReports, weapons);
+
         }
     }
 }
