@@ -1,11 +1,11 @@
-﻿public abstract class AttakTools
+﻿public abstract class Weapon
 {
-    private  string _booms;
-    private string   _efective;
+    protected string name;
+    protected  string _booms;
+    protected string   _efective;
     protected  int _strikes;
-    private string name;
 
-    public AttakTools(string name ,string booms,string efective,int strikes)
+    public Weapon(string name ,string booms,string efective,int strikes)
     {
         this._booms = booms;
         this._efective = efective;
