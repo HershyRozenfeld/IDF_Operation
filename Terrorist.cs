@@ -15,7 +15,7 @@ public class Terrorist
        "Crossbow",
        "Sword"
     };
-
+  
     protected int rank;
     protected bool status = true;
   
