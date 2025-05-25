@@ -1,9 +1,9 @@
 ﻿public class Intel
 {
     public Terrorist terrorist;
-    public int location;
+    public string location;
     public DateTime date;
-    public Intel(Terrorist terrorist, int location, DateTime date)
+    public Intel(Terrorist terrorist, string location, DateTime date)
     {
         this.terrorist = terrorist;
         this.location = location;

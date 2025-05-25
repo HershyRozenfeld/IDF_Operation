@@ -8,65 +8,69 @@ namespace IDF_Operation
 {
     internal class Program
     {
-        static void consoleMenager(int choice)
+        static void consoleMenager(int choice, List<Intel> intelReports, List<Weapon> weapons)
         {
-            switch(choice)
+            AMAN aMAN = new AMAN(intelReports);
+            switch (choice)
             {
                 case 1:
                     Console.WriteLine();
                     break;
-                case 2;
+                case 2:
                     Console.WriteLine();
                     break;
                 case 3:
-                    attack(Intel t.target, List < Weapon > attaktools);
+                    attack(aMAN.target(), weapons);
                     break;
             }
         }
-        static void attack(Intel intel, List<Weapon> attaktools)
+        static void attack(Intel intel, List<Weapon> weapons)
         {
-           foreach (Weapon item in attakTools)
+            foreach (Weapon item in weapons)
             {
                 if (item.effective == intel.location)
                 {
                     if (item.strikes > 0)
                     {
                         intel.terrorist.dead();
-                        item.setStrike();
-                        Consol.WriteLine($"{intel.terrorist.name} kiled by {item.name} ");
+                        item.setStrike(1);
+                        Console.WriteLine($"{intel.terrorist.getName()} kiled by {item.name} ");
                     }
                     else
                     {
-                        Console.WriteLine($"The {item.name} ammunition ran out "); 
+                        Console.WriteLine($"The {item.name} ammunition ran out ");
                     }
                 }
             }
         }
         static void Main(string[] args)
         {
-            List<Terrorist> terrorists = new List<Terrorist>
-        {
-            new Terrorist("Ali", "knife", 1),
-            new Terrorist("Omar", "pistol", 2),
-            new Terrorist("Yusuf", "rifle", 3),
-            new Terrorist("Khalid", "sniper", 2),
-            new Terrorist("Abu", "grenade", 4),
-            new Terrorist("Salim", "baton", 1),
-            new Terrorist("Zayd", "sword", 3),
-            new Terrorist("Tariq", "crossbow", 2),
-            new Terrorist("Fahad", "molotov", 5),
-            new Terrorist("Nabil", "rocket launcher", 4),
-            new Terrorist("Jamal", "knife", 2),
-            new Terrorist("Bilal", "pistol", 1),
-            new Terrorist("Imran", "rifle", 3),
-            new Terrorist("Rami", "sniper", 2),
-            new Terrorist("Saif", "grenade", 5),
-            new Terrorist("Adil", "baton", 1),
-            new Terrorist("Hasan", "sword", 2),
-            new Terrorist("Ibrahim", "crossbow", 3),
-            new Terrorist("Nasser", "molotov", 4),
-            new Terrorist("Walid", "rocket launcher", 2)
-        };
+            List<Intel> intelReports = new List<Intel>
+            {
+                new Intel(new Terrorist("Ali", "knife", 1), "XJwG02", DateTime.Now),
+                new Intel(new Terrorist("Omar", "pistol", 2), "vrabJ3", DateTime.Now),
+                new Intel(new Terrorist("Yusuf", "rifle", 3), "RC62Cl", DateTime.Now),
+                new Intel(new Terrorist("Khalid", "sniper", 4), "8lPANF", DateTime.Now),
+                new Intel(new Terrorist("Abu", "grenade", 5), "KA21Rr", DateTime.Now),
+                new Intel(new Terrorist("Salim", "baton", 2), "R1aLHC", DateTime.Now),
+                new Intel(new Terrorist("Zayd", "sword", 1), "KZLKer", DateTime.Now),
+                new Intel(new Terrorist("Tariq", "crossbow", 3), "r9oHAF", DateTime.Now),
+                new Intel(new Terrorist("Fahad", "molotov", 4), "ANAb33", DateTime.Now),
+                new Intel(new Terrorist("Nabil", "rocket launcher", 5), "z80NqG", DateTime.Now),
+                new Intel(new Terrorist("Jamal", "knife", 1), "aBckSJ", DateTime.Now),
+                new Intel(new Terrorist("Bilal", "pistol", 2), "sNEgyv", DateTime.Now),
+                new Intel(new Terrorist("Imran", "rifle", 3), "cqsgHd", DateTime.Now),
+                new Intel(new Terrorist("Rami", "sniper", 4), "j9FoVT", DateTime.Now),
+                new Intel(new Terrorist("Saif", "grenade", 5), "vXZfUf", DateTime.Now)
+            };
+
+            List<Weapon> weapons = new List<Weapon>
+            {
+                new F16Fighter(),
+                new Hermes460(),
+                new M109()
+            };
+
         }
     }
 }
