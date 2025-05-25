@@ -1,17 +1,12 @@
 ﻿using System.IO.Pipes;
 
-public class Hermes460 : AttakTools
+public class Hermes460 : Weapon
 {
-  
-
-    public override  void setFields()
+    public Hermes460():base("Hermes","person , vehicles", "vechiles",3) { } 
+    
+    public override void setStrike(int newStrike)
     {
-        this.booms = "person , vehicles";
-        this.efective = "pepole , vechiles";
- this.strikes = 3;
-    public override void setStrike()
-    {
-        strikes --;
-    }
+        _strikes -= newStrike;
+    }  
 
 }

@@ -1,11 +1,19 @@
-﻿public abstract class AttakTools
+﻿public abstract class Weapon
 {
-    protected string booms;
-    protected string effective;
-    protected int strikes;
 
-   
-    public abstract void setFields();
+    protected string name;
+    protected  string _booms;
+    protected string   _efective;
+    protected  int _strikes;
+
+
+    public Weapon(string name ,string booms,string efective,int strikes)
+    {
+        this._booms = booms;
+        this._efective = efective;
+        this._strikes = strikes;
+        this.name = name;
+    }
 
     public abstract void setStrike();
 }
