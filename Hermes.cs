@@ -1,11 +1,13 @@
-﻿public class Hermes460 : AttakTools
+﻿using System.IO.Pipes;
+
+public class Hermes460 : AttakTools
 {
-    public Hermes460() : base("personnel or armored vehicles", "pepole , vechiles", 3)
-    {
-    }
+     
+    public Hermes460():base("person , vehicles", "pepole , vechiles",3) { } 
+    
     public override void setStrike(int newStrike)
     {
-        strikes -= newStrike;
+        _strikes -= newStrike;
     }
 
 }

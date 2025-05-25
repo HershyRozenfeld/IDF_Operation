@@ -1,12 +1,12 @@
-﻿using System.Xml.Linq;
+
 public class Terrorist
 {
     private string name;
     protected string weapon;
     protected int rank;
     protected bool status = true;
-
-    public Terrorist(string name, string weapon, int rank)
+  
+    public Terrorist(string name,string weapon,int rank)
     {
         this.name = name;
         this.weapon = weapon;
