@@ -33,8 +33,10 @@ namespace IDF_Operation
                     if (item.strikes > 0)
                     {
                         intel.terrorist.dead();
+
                         item.setStrike(1);
                         Console.WriteLine($"{intel.terrorist.getName()} kiled by {item.name} ");
+
                     }
                     else
                     {
@@ -46,6 +48,7 @@ namespace IDF_Operation
         static void Main(string[] args)
         {
             List<Intel> intelReports = new List<Intel>
+
             {
                 new Intel(new Terrorist("Ali", "knife", 1), "XJwG02", DateTime.Now),
                 new Intel(new Terrorist("Omar", "pistol", 2), "vrabJ3", DateTime.Now),
@@ -70,7 +73,6 @@ namespace IDF_Operation
                 new Hermes460(),
                 new M109()
             };
-
         }
     }
 }
