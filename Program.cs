@@ -57,6 +57,7 @@ namespace IDF_Operation
 
             List<Intel> intelReports = new List<Intel>
 
+
                 {
                 new Intel(new Terrorist("Ali", "knife", 1), "building", DateTime.Now),
                 new Intel(new Terrorist("Omar", "pistol", 2), "vehicles", DateTime.Now),
@@ -81,7 +82,9 @@ namespace IDF_Operation
                 new Hermes460(),
                 new M109()
             };
+
             consoleMenager(intelReports, weapons);
+
         }
     }
 }
