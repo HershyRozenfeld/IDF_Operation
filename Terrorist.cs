@@ -1,6 +1,7 @@
 
 public class Terrorist
 {
+
     private string name;
     public List<string> weapon = new List<string>
     {
@@ -50,4 +51,5 @@ public class Terrorist
     {
         return status;
     }
+
 }

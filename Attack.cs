@@ -1,6 +1,11 @@
-﻿public abstract class Attack 
+﻿public  class Attack 
 {
-    public Intel Intel;
-    public AttakTools AttakTools;
-    public Terrorist Terrorist;
+    public Intel intel;
+    public list<AttakTools> attaktools;
+    public Attack(Intel intel,list<AttackTools> attaktools)
+    {
+        this.intel = intel;
+        this.attaktools = attaktools;
+    }
+
 }
