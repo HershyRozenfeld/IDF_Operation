@@ -5,6 +5,6 @@
 
     public override void setStrike(int newStrike)
     {
-        _strikes -= newStrike;
+        strikes -= newStrike;
     }
 }

@@ -1,8 +1,8 @@
 ﻿public  class Attack 
 {
     public Intel intel;
-    public list<Weapon> attaktools;
-    public Attack(Intel intel,list<Weapon> attaktools)
+    public List<Weapon> attaktools;
+    public Attack(Intel intel,List<Weapon> attaktools)
     {
         this.intel = intel;
         this.attaktools = attaktools;
