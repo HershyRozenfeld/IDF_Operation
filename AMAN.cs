@@ -22,7 +22,7 @@
     {
         int max = 0;
         int sum = 0;
-        Intel tar = new Intel();
+        Intel tar = new Intel(new Terrorist("Ali", "knife", 1), "XJwG02", DateTime.Now);
 
         string weapon = "";
         foreach (Intel i in intels)

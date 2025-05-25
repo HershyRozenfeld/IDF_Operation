@@ -6,7 +6,7 @@ public class Hermes460 : Weapon
     
     public override void setStrike(int newStrike)
     {
-        _strikes -= newStrike;
+        strikes -= newStrike;
     }  
 
 }
