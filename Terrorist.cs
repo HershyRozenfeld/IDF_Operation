@@ -1,9 +1,11 @@
-{
-    private  string name;
-    protected  string weapon;
-    protected  int rank;
-    protected bool status = true;
 
+public class Terrorist
+{
+    private string name;
+    protected string weapon;
+    protected int rank;
+    protected bool status = true;
+  
     public Terrorist(string name,string weapon,int rank)
     {
         this.name = name;
