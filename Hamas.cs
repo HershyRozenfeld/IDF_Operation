@@ -1,4 +1,5 @@
-﻿public class Hamas : ITerrorOrganization
+﻿public class Hamas : TerrorOrganization
 {
-
+    public string name;
+    public DateTime erection;
 }

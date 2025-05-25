@@ -1,8 +1,8 @@
 ﻿using System;
 
-public class Idf
+public static class IDF
 {
-    protected DateTime dateOfEstablishment;
-    protected string currentCommander;
-    protected StrikeOption<> strikeOption;
+    public static DateTime dateOfEstablishment;
+    public static string currentCommander;
+    public static List<AttakTools> strikeOption;
 }

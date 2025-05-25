@@ -1,14 +1,28 @@
-﻿public class Terrorist
+
+public class Terrorist
 {
     private string name;
-    private   string weapon;
-    private   int rank;
-    private  bool status = true;
-
+    public List<string> weapon = new List<string>
+    {
+       "Knife",
+       "Pistol",
+       "Rifle",
+       "Sniper",
+       "Grenade",
+       "Molotov",
+       "Rocket Launcher",
+       "Shotgun",
+       "Crossbow",
+       "Sword"
+    };
+  
+    protected int rank;
+    protected bool status = true;
+  
     public Terrorist(string name,string weapon,int rank)
     {
         this.name = name;
-        this.weapon = weapon;
+        this.weapon.Add(weapon);
         this.rank = rank;
     }
 
@@ -22,7 +36,7 @@
         return name;
     }
 
-    public string getWeapon()
+    public List<string> getWeapon()
     {
         return weapon;
     }
