@@ -33,7 +33,7 @@ namespace IDF_Operation
                     {
                         intel.terrorist.dead();
                         item.setStrike();
-                        Consol.WriteLine($"{intel.terrorist.name} kiled by {item.name} ");
+                        Console.WriteLine($"{intel.terrorist.name} kiled by {item.name} ");
                     }
                     else
                     {
@@ -44,28 +44,23 @@ namespace IDF_Operation
         }
         static void Main(string[] args)
         {
-            List<Terrorist> terrorists = new List<Terrorist>
+            List<Intel> intelReports = new List<Intel>
         {
-            new Terrorist("Ali", "knife", 1),
-            new Terrorist("Omar", "pistol", 2),
-            new Terrorist("Yusuf", "rifle", 3),
-            new Terrorist("Khalid", "sniper", 2),
-            new Terrorist("Abu", "grenade", 4),
-            new Terrorist("Salim", "baton", 1),
-            new Terrorist("Zayd", "sword", 3),
-            new Terrorist("Tariq", "crossbow", 2),
-            new Terrorist("Fahad", "molotov", 5),
-            new Terrorist("Nabil", "rocket launcher", 4),
-            new Terrorist("Jamal", "knife", 2),
-            new Terrorist("Bilal", "pistol", 1),
-            new Terrorist("Imran", "rifle", 3),
-            new Terrorist("Rami", "sniper", 2),
-            new Terrorist("Saif", "grenade", 5),
-            new Terrorist("Adil", "baton", 1),
-            new Terrorist("Hasan", "sword", 2),
-            new Terrorist("Ibrahim", "crossbow", 3),
-            new Terrorist("Nasser", "molotov", 4),
-            new Terrorist("Walid", "rocket launcher", 2)
+            new Intel(new Terrorist("Ali", "knife", 1), 101, DateTime.Now),
+            new Intel(new Terrorist("Omar", "pistol", 2), 102, DateTime.Now),
+            new Intel(new Terrorist("Yusuf", "rifle", 3), 103, DateTime.Now),
+            new Intel(new Terrorist("Khalid", "sniper", 4), 104, DateTime.Now),
+            new Intel(new Terrorist("Abu", "grenade", 5), 105, DateTime.Now),
+            new Intel(new Terrorist("Salim", "baton", 2), 106, DateTime.Now),
+            new Intel(new Terrorist("Zayd", "sword", 1), 107, DateTime.Now),
+            new Intel(new Terrorist("Tariq", "crossbow", 3), 108, DateTime.Now),
+            new Intel(new Terrorist("Fahad", "molotov", 4), 109, DateTime.Now),
+            new Intel(new Terrorist("Nabil", "rocket launcher", 5), 110, DateTime.Now),
+            new Intel(new Terrorist("Jamal", "knife", 1), 111, DateTime.Now),
+            new Intel(new Terrorist("Bilal", "pistol", 2), 112, DateTime.Now),
+            new Intel(new Terrorist("Imran", "rifle", 3), 113, DateTime.Now),
+            new Intel(new Terrorist("Rami", "sniper", 4), 114, DateTime.Now),
+            new Intel(new Terrorist("Saif", "grenade", 5), 115, DateTime.Now)
         };
         }
     }
