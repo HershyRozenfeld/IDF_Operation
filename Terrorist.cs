@@ -1,4 +1,3 @@
-﻿public class Terrorist
 {
     private  string name;
     protected  string weapon;

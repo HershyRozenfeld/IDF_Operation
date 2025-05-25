@@ -1,4 +1,4 @@
-﻿public class Hamas : ITerrorOrganization
+﻿public class Hamas : TerrorOrganization
 {
 
 }
