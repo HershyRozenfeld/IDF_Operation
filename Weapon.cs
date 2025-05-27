@@ -14,6 +14,12 @@
         this.strikes = strikes;
         this.name = name;
     }
-
+    public override string ToString()
+    {
+        return $"Weapon: {name}\n" +
+               $"- Boom Type: {booms}\n" +
+               $"- Effective Area: {effective}\n" +
+               $"- Strikes Left: {strikes}\n";
+    }
     public abstract void setStrike(int fgh);
 }
