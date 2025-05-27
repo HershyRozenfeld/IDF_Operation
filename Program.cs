@@ -106,13 +106,16 @@ namespace IDF_Operation
             };
 
 
+
             List<Weapon> weapons = new List<Weapon>
             {
                 new F16Fighter(),
                 new Hermes460(),
                 new M109()
             };
+
             consoleMenager(intelReports, weapons);
+
         }
     }
 }
