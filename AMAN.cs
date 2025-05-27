@@ -1,6 +1,6 @@
 ﻿public class AMAN
 {
-    public List<Intel> intels;    // = new List<Intel>();
+    public List<Intel> intels;    
     public Dictionary<string, int> dictionary = new Dictionary<string, int>
     {
         { "knife", 2 },
@@ -24,11 +24,11 @@
         int sum = 0;
         Intel tar = new Intel(new Terrorist("Ali", "knife", 1), "XJwG02", DateTime.Now);
 
-        string weapon = "";
         foreach (Intel i in intels)
         {
+            
             int weaponRank = 0;
-            foreach (string w in i.terrorist.weapon)
+            foreach (string w in i.terrorist.getWeapon())
             {
                 if (dictionary.ContainsKey(w.ToLower()))
                 {
@@ -44,5 +44,9 @@
 
         }
         return tar;
+    }
+    public void removeFromList(List<Intel> list, Intel intel)
+    {
+
     }
 }

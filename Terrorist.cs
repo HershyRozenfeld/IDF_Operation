@@ -1,9 +1,11 @@
 
+using System.Xml.Linq;
+
 public class Terrorist
 {
 
     private string name;
-    public List<string> weapon = new List<string>
+    private List<string> weapon = new List<string>
     {
        "Knife",
        "Pistol",
@@ -16,7 +18,6 @@ public class Terrorist
        "Crossbow",
        "Sword"
     };
-  
     protected int rank;
     protected bool status = true;
   
@@ -27,7 +28,7 @@ public class Terrorist
         this.rank = rank;
     }
 
-    public void dead()
+    public void Kill()
     {
         this.status = false;
     }
@@ -51,5 +52,10 @@ public class Terrorist
     {
         return status;
     }
+    public override string ToString()
+    {
+        return $"Name: {name}, Weapon: {string.Join(", ", weapon)}, Rank: {rank}, Status: {(status ? "Alive" : "Dead")}";
+    }
+
 
 }
