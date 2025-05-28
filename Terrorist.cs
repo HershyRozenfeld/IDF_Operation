@@ -1,27 +1,14 @@
-
-using System.Xml.Linq;
+using System;
+using System.Collections.Generic;
 
 public class Terrorist
 {
-
     private string name;
-    private List<string> weapon = new List<string>
-    {
-       "Knife",
-       "Pistol",
-       "Rifle",
-       "Sniper",
-       "Grenade",
-       "Molotov",
-       "Rocket Launcher",
-       "Shotgun",
-       "Crossbow",
-       "Sword"
-    };
+    private List<string> weapon { get; set; } = new List<string>();
     protected int rank;
     protected bool status = true;
-  
-    public Terrorist(string name,string weapon,int rank)
+
+    public Terrorist(string name, string weapon, int rank)
     {
         this.name = name;
         this.weapon.Add(weapon);
@@ -43,6 +30,11 @@ public class Terrorist
         return weapon;
     }
 
+    public void SetWeapon(string weapon)
+    {
+        this.weapon.Add(weapon);
+    }
+
     public int getRank()
     {
         return rank;
@@ -52,10 +44,15 @@ public class Terrorist
     {
         return status;
     }
+
     public override string ToString()
     {
-        return $"Name: {name}, Weapon: {string.Join(", ", weapon)}, Rank: {rank}, Status: {(status ? "Alive" : "Dead")}";
+        Console.ForegroundColor = ConsoleColor.Red;
+        string output = $"  Terrorist: {name}\n" +
+                        $"  - Weapons: {string.Join(", ", weapon)}\n" +
+                        $"  - Rank: {rank}\n" +
+                        $"  - Status: {(status ? "Alive" : "Dead")}\n";
+        Console.ResetColor();
+        return output;
     }
-
-
 }
