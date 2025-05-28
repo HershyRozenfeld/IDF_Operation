@@ -1,6 +1,9 @@
-﻿public class AMAN
+﻿using System;
+using System.Collections.Generic;
+
+public class AMAN
 {
-    public List<Intel> intels;    
+    public List<Intel> intels;
     public Dictionary<string, int> dictionary = new Dictionary<string, int>
     {
         { "knife", 2 },
@@ -14,39 +17,59 @@
         { "molotov", 6 },
         { "rocket launcher", 9 }
     };
+
     public AMAN(List<Intel> intels)
     {
         this.intels = intels;
     }
+
     public Intel target()
     {
         int max = 0;
         int sum = 0;
-        Intel tar = new Intel(new Terrorist("Ali", "knife", 1), "XJwG02", DateTime.Now);
+        Intel tar = null;
 
         foreach (Intel i in intels)
         {
-            
-            int weaponRank = 0;
-            foreach (string w in i.terrorist.getWeapon())
+            if (i.terrorist.getStatus()) // בדוק אם המחבל חי
             {
-                if (dictionary.ContainsKey(w.ToLower()))
+                int weaponRank = 0;
+                foreach (string w in i.terrorist.getWeapon())
                 {
-                    weaponRank += dictionary[w.ToLower()];
+                    if (dictionary.ContainsKey(w.ToLower()))
+                    {
+                        weaponRank += dictionary[w.ToLower()];
+                    }
+                }
+                sum = i.terrorist.getRank() * weaponRank;
+                if (sum > max)
+                {
+                    max = sum;
+                    tar = i;
                 }
             }
-            sum = i.terrorist.getRank() * weaponRank;
-            if (sum > max)
-            {
-                max = sum;
-                tar = i;
-            }
-
         }
         return tar;
     }
-    public void removeFromList(List<Intel> list, Intel intel)
-    {
 
+    public override string ToString()
+    {
+        Console.ForegroundColor = ConsoleColor.Green;
+        string result = $"┌═══════════════ AMAN Intelligence Reports ════════════════┐\n";
+        Console.ResetColor();
+        if (intels.Count == 0)
+        {
+            result += "│        No intelligence reports available.\n";
+            result += "└══════════════════════════════════════════════════════════┘";
+        }
+        else
+        {
+            foreach (Intel i in intels)
+            {
+                result += $"{i.ToString()}";
+            }
+            result += "└══════════════════════════════════════════════════════════┘";
+        }
+        return result;
     }
 }
