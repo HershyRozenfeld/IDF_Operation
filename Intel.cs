@@ -16,11 +16,9 @@ public class Intel
     public override string ToString()
     {
         string output = $"│ Target Intel\n";
-        Console.ForegroundColor = ConsoleColor.Yellow;
         output += $"│ Location: {location}\n";
         output += $"│ Date: {date.ToShortDateString()} {date.ToShortTimeString()}\n";
         output += $"│ Terrorist Info:\n{terrorist.ToString()}";
-        Console.ResetColor();
         return output;
     }
 }
