@@ -31,7 +31,7 @@ public class AMAN
 
         foreach (Intel i in intels)
         {
-            if (i.terrorist.getStatus()) // בדוק אם המחבל חי
+            if (i.terrorist.getStatus())
             {
                 int weaponRank = 0;
                 foreach (string w in i.terrorist.getWeapon())
@@ -54,13 +54,10 @@ public class AMAN
 
     public override string ToString()
     {
-        Console.ForegroundColor = ConsoleColor.Green;
-        string result = $"┌═══════════════ AMAN Intelligence Reports ════════════════┐\n";
-        Console.ResetColor();
+        string result = $"AMAN Intelligence Reports Summary ({intels.Count} reports)\n";
         if (intels.Count == 0)
         {
-            result += "│        No intelligence reports available.\n";
-            result += "└══════════════════════════════════════════════════════════┘";
+            result += "No intelligence reports available.\n";
         }
         else
         {
@@ -68,7 +65,6 @@ public class AMAN
             {
                 result += $"{i.ToString()}";
             }
-            result += "└══════════════════════════════════════════════════════════┘";
         }
         return result;
     }
