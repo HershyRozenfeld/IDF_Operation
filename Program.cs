@@ -8,20 +8,19 @@ namespace IDF_Operation
     {
         static void printMenu()
         {
-            Console.Clear();
-            Console.ForegroundColor = ConsoleColor.Magenta;
-            Console.WriteLine("=============================================================");
-            Console.WriteLine("                   IDF OPERATION MENU                         ");
-            Console.WriteLine("=============================================================");
-            Console.ResetColor();
-            Console.WriteLine("1. Display Intelligence Reports");
-            Console.WriteLine("2. Display Available Weapons");
-            Console.WriteLine("3. Execute Attack on Target");
-            Console.WriteLine("4. Exit");
-            Console.ForegroundColor = ConsoleColor.Magenta;
-            Console.WriteLine("=============================================================");
-            Console.ResetColor();
-            Console.Write("Enter your choice (1-4): ");
+            ConsolePrinter.ClearScreen();
+            string separator = "=============================================================";
+            ConsolePrinter.PrintHeader(separator, ConsoleColor.Magenta);
+            ConsolePrinter.PrintHeader("                   IDF OPERATION MENU                         ", ConsoleColor.Magenta);
+            ConsolePrinter.PrintHeader(separator, ConsoleColor.Magenta);
+
+            ConsolePrinter.PrintText("1. Display Intelligence Reports");
+            ConsolePrinter.PrintText("2. Display Available Weapons");
+            ConsolePrinter.PrintText("3. Execute Attack on Target");
+            ConsolePrinter.PrintText("4. Exit");
+
+            ConsolePrinter.PrintHeader(separator, ConsoleColor.Magenta);
+            ConsolePrinter.PrintPrompt("Enter your choice (1-4): ");
         }
 
         static void consoleMenager(AMAN intels, Hamas hamas, List<Weapon> weapons)
@@ -35,51 +34,44 @@ namespace IDF_Operation
                 switch (choice)
                 {
                     case "1":
-                        Console.WriteLine(intels.ToString());
+                        ConsolePrinter.PrintAmanReports(intels);
                         Console.ReadKey();
                         break;
                     case "2":
-                        Console.ForegroundColor = ConsoleColor.Cyan;
-                        Console.WriteLine("=== Available Weapons ===");
-                        Console.ResetColor();
+                        ConsolePrinter.PrintHeader("=== Available Weapons ===", ConsoleColor.Cyan);
                         if (weapons.Count == 0)
                         {
-                            Console.WriteLine("No weapons available.");
+                            ConsolePrinter.PrintText("No weapons available.");
                         }
                         else
                         {
                             foreach (Weapon weapon in weapons)
                             {
-                                Console.WriteLine(weapon.ToString());
+                                ConsolePrinter.PrintWeaponInfo(weapon);
                             }
                         }
                         Console.ReadKey();
                         break;
                     case "3":
                         Intel target = intels.target();
-                        Console.ForegroundColor = ConsoleColor.Yellow;
                         if (target == null)
                         {
-                            Console.WriteLine("No living targets available.");
+                            ConsolePrinter.PrintWarning("No living targets available.");
                         }
                         else
                         {
-                            Console.WriteLine("=== Selected Target ===");
-                            Console.WriteLine(target.ToString());
+                            ConsolePrinter.PrintHeader("=== Selected Target ===", ConsoleColor.Yellow);
+                            ConsolePrinter.PrintIntelInfo(target);
                             Attack(target, hamas, weapons, intels);
                         }
                         Console.ReadKey();
                         break;
                     case "4":
                         flag = false;
-                        Console.ForegroundColor = ConsoleColor.Magenta;
-                        Console.WriteLine("Exiting IDF Operation System...");
-                        Console.ResetColor();
+                        ConsolePrinter.PrintText("Exiting IDF Operation System...", ConsoleColor.Magenta);
                         break;
                     default:
-                        Console.ForegroundColor = ConsoleColor.Red;
-                        Console.WriteLine("Invalid input. Please enter a number between 1 and 4.");
-                        Console.ResetColor();
+                        ConsolePrinter.PrintFailure("Invalid input. Please enter a number between 1 and 4.");
                         Console.ReadKey();
                         break;
                 }
@@ -99,35 +91,52 @@ namespace IDF_Operation
                         intel.terrorist.Kill();
                         hamas.RemoveTerrorist(intel.terrorist);
                         item.setStrike(1);
+                        // It's generally safer to remove from a list after iterating,
+                        // but AMAN.intels is distinct from the iteration here.
+                        // However, ensure AMAN.target() logic handles a shrinking intels list if re-called.
                         intels.intels.Remove(intel);
-                        Console.ForegroundColor = ConsoleColor.Green;
-                        Console.WriteLine($"SUCCESS: {intel.terrorist.getName()} eliminated by {item.name}.");
-                        Console.ResetColor();
+                        ConsolePrinter.PrintSuccess($"SUCCESS: {intel.terrorist.getName()} eliminated by {item.name}.");
                         attackSuccessful = true;
                         if (item.strikes == 0)
                         {
-                            weaponToRemove.Add(item); // I used a temporary list (weaponsToRemove) to avoid removing items while looping over weapons, it's better not to cause errors
+                            weaponToRemove.Add(item);
                         }
                         break;
                     }
                     else
                     {
-                        Console.ForegroundColor = ConsoleColor.Red;
-                        Console.WriteLine($"FAILURE: {item.name} ammunition depleted.");
-                        Console.ResetColor();
+                        ConsolePrinter.PrintFailure($"FAILURE: {item.name} ammunition depleted.");
                     }
                 }
             }
             foreach (Weapon w in weaponToRemove)
             {
                 weapons.Remove(w);
-                Console.WriteLine($"Weapon {w.name} has been depleted and removed.");
+                ConsolePrinter.PrintWarning($"Weapon {w.name} has been depleted and removed.");
             }
-            if (!attackSuccessful)
+
+            if (!attackSuccessful && intel.terrorist.getStatus()) // Check if terrorist is still alive
             {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine($"No suitable weapon found for location: {intel.location}.");
-                Console.ResetColor();
+                // This message should only appear if no weapon was effective or available with ammo
+                // and the target was not eliminated by a previous weapon in the loop (which 'break' prevents here).
+                bool suitableWeaponExistsButNoAmmo = false;
+                bool noSuitableWeaponAtAll = true;
+                foreach (Weapon item in weapons) // Re-check or rely on a flag
+                {
+                    if (item.effective.Contains(intel.location))
+                    {
+                        noSuitableWeaponAtAll = false;
+                        if (item.strikes == 0) suitableWeaponExistsButNoAmmo = true;
+                        else suitableWeaponExistsButNoAmmo = false; // Found one with ammo
+                        break;
+                    }
+                }
+                if (noSuitableWeaponAtAll)
+                    ConsolePrinter.PrintFailure($"No suitable weapon found for location: {intel.location}.");
+                // else if (suitableWeaponExistsButNoAmmo) 
+                // this case is covered by "ammunition depleted" inside the loop for the first such weapon.
+                // However, if ALL suitable weapons are out of ammo, that message is also relevant.
+                // The current logic prints "ammunition depleted" for the first one encountered.
             }
         }
 
@@ -160,7 +169,7 @@ namespace IDF_Operation
 
             List<Intel> intelReports = new List<Intel>();
             Random random = new Random();
-            foreach (Terrorist terrorist in hamas.GetTerrorists())
+            foreach (Terrorist terrorist in hamas.GetTerrorists().Where(t => t.getStatus()))
             {
                 string location = locations[random.Next(locations.Count)];
                 DateTime date = DateTime.Now.AddDays(-random.Next(365));
@@ -173,10 +182,10 @@ namespace IDF_Operation
                 new F16Fighter(),
                 new F16Fighter(),
                 new Hermes460(),
-                new M109()
+                new M109() 
             };
 
-            // The system will now receive an updated terrorist list at the time of object creation, but it will not be updated if new changes are made or if terrorists are removed from the Hamas terrorist list.
+
             AMAN intels = new AMAN(intelReports);
             consoleMenager(intels, hamas, weapons);
         }
