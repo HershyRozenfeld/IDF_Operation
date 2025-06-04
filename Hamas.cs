@@ -34,30 +34,29 @@ public class Hamas
         }
     }
 
+    // Added getter for eliminated terrorists count
+    public int GetEliminatedTerroristsCount()
+    {
+        return killTerrorists.Count;
+    }
+
     public override string ToString()
     {
-        Console.ForegroundColor = ConsoleColor.Magenta;
-        string result = $"┌════════════════════ Hamas Organization ══════════════════┐\n";
-        result += $"│ Name: {organiztionName}\n";
-        result += $"│ Established: {organiztionErection.ToShortDateString()}\n";
-        result += $"│ Active Terrorists: {terrorists.Count}\n";
-        result += $"│ Eliminated Terrorists: {killTerrorists.Count}\n";
-        result += $"└══════════════════════════════════════════════════════════┘\n";
-        Console.ForegroundColor = ConsoleColor.Yellow;
-        result += $"┌════════════════ Active Terrorists List ══════════════════┐\n";
-        Console.ResetColor();
+        string result = $"Hamas Organization: {organiztionName}, Established: {organiztionErection.ToShortDateString()}\n";
+        result += $"Active Terrorists: {terrorists.Count}, Eliminated Terrorists: {killTerrorists.Count}\n";
+
         if (terrorists.Count == 0)
         {
-            result += "│ No active terrorists.\n";
+            result += "No active terrorists.\n";
         }
         else
         {
+            result += "Active Terrorists List:\n";
             foreach (Terrorist t in terrorists)
             {
                 result += $"{t.ToString()}";
             }
         }
-        result += "└══════════════════════════════════════════════════════════┘";
         return result;
     }
 }
