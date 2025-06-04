@@ -47,12 +47,10 @@ public class Terrorist
 
     public override string ToString()
     {
-        Console.ForegroundColor = ConsoleColor.Red;
         string output = $"  Terrorist: {name}\n" +
                         $"  - Weapons: {string.Join(", ", weapon)}\n" +
                         $"  - Rank: {rank}\n" +
                         $"  - Status: {(status ? "Alive" : "Dead")}\n";
-        Console.ResetColor();
         return output;
     }
 }
